@@ -1,5 +1,5 @@
-# source: https://eu1.prisma.sh/sibylle-sehl-b1ed47/sick-fits-demo-server/dev
-# timestamp: Tue Apr 16 2019 21:07:53 GMT+0200 (Central European Summer Time)
+# source: https://eu1.prisma.sh/sibylle-sehl-b1ed47/sick-fits-new/dev
+# timestamp: Wed Apr 24 2019 21:13:46 GMT+0200 (Central European Summer Time)
 
 type AggregateItem {
   count: Int!
@@ -14,13 +14,17 @@ type BatchPayload {
   count: Long!
 }
 
+scalar DateTime
+
 type Item implements Node {
   id: ID!
   title: String!
   description: String!
   image: String
   largeImage: String
-  price: Int
+  price: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -39,7 +43,7 @@ input ItemCreateInput {
   description: String!
   image: String
   largeImage: String
-  price: Int
+  price: Int!
 }
 
 """An edge in a connection."""
@@ -64,10 +68,10 @@ enum ItemOrderByInput {
   largeImage_DESC
   price_ASC
   price_DESC
-  updatedAt_ASC
-  updatedAt_DESC
   createdAt_ASC
   createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type ItemPreviousValues {
@@ -76,7 +80,9 @@ type ItemPreviousValues {
   description: String!
   image: String
   largeImage: String
-  price: Int
+  price: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type ItemSubscriptionPayload {
@@ -365,6 +371,50 @@ input ItemWhereInput {
 
   """All values greater than or equal the given value."""
   price_gte: Int
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 input ItemWhereUniqueInput {
@@ -443,6 +493,8 @@ type User implements Node {
   id: ID!
   name: String!
   email: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
 }
 
 """A connection to a list of items."""
@@ -487,6 +539,8 @@ type UserPreviousValues {
   id: ID!
   name: String!
   email: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
 }
 
 type UserSubscriptionPayload {
@@ -667,6 +721,50 @@ input UserWhereInput {
 
   """All values not ending with the given string."""
   email_not_ends_with: String
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
 }
 
 input UserWhereUniqueInput {
