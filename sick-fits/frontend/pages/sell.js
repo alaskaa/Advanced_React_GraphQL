@@ -1,9 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Sell = (props) => (
-    <div>
-        <p>Hey!</p>
-    </div>
-)
+import CreateItem from "../components/CreateItem";
+
+const Sell = props => (
+  <div>
+    <CreateItem />
+  </div>
+);
 
 export default Sell;
