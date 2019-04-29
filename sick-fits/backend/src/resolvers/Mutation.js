@@ -12,12 +12,26 @@ const Mutations = {
     );
 
     return item;
-  }
+  },
 
-  // createDog(parent, args, ctx, info) {
-  //   // createDog
-  //   console.log(args);
-  // }
+  updateItem(parent, args, ctx, info) {
+    // take copy of the updates
+    const updates = { ...args };
+
+    // remove ID from updates
+    delete updates.id;
+
+    // run the update method
+    return ctx.db.mutation.updateItem(
+      {
+        data: updates,
+        where: {
+          id: args.id
+        }
+      },
+      info
+    );
+  }
 };
 
 module.exports = Mutations;
